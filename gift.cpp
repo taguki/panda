@@ -15,6 +15,7 @@ using namespace std;
 void panda();
 void trail();
 void trail2();
+void fork();
 void get_text(string text[]);
 void textbox_meet(string text[], int i, string name);
 void meetPanda(string text[]);
@@ -104,6 +105,19 @@ void trail2() {
 
     if (openTrail2.is_open()) {
         while (getline(openTrail2, line)) {
+            cout << line << endl;
+        }
+    }
+    cout << endl << endl;
+}
+
+void fork() {
+    string line = "";
+    ifstream openfork;
+    openfork.open("fork.txt");
+
+    if (openfork.is_open()) {
+        while (getline(openfork, line)) {
             cout << line << endl;
         }
     }
@@ -212,30 +226,38 @@ void stay(string text[], int i) {
 void follow(string text[], int i) {
     int answer;
     for (i = 14; i < AD_TEXT; i++) {
-        trail2();
-        textbox_startAdventure(text, i);
-        Sleep(1000);
         if (i == 19) {
+            system("cls");
+            fork();
+            textbox_startAdventure(text, 19);
             cout << endl << "select an option: ";
             cin >> answer;
             if (answer == 1) {
+                Sleep(1000);
                 system("cls");
                 left(text, i);
             }
             else if (answer == 2) {
+                Sleep(1000);
                 system("cls");
                 right(text, i);
             }
         }
-
+        trail2();
+        textbox_startAdventure(text, i);
+        Sleep(1000);
         system("cls");
     }
 }
 
 void left(string text[], int i) {
-
+    for (i = 20; i < AD_TEXT; i++) {
+        trail();
+    }
 }
 
 void right(string text[], int i) {
-
+    for (i = 20; i < AD_TEXT; i++) {
+        trail();
+    }
 }
