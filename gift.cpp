@@ -9,13 +9,14 @@
 #include <string>
 using namespace std;
 #define START_TEXT 7
-#define AD_TEXT 30
+#define AD_TEXT 50
 #define MAX_TEXT 100
 
 void panda();
 void trail();
 void trail2();
 void fork();
+void albert();
 void get_text(string text[]);
 void textbox_meet(string text[], int i, string name);
 void meetPanda(string text[]);
@@ -24,6 +25,7 @@ void textbox_startAdventure(string text[], int i);
 void stay(string text[], int i);
 void follow(string text[], int i);
 void left(string text[], int i);
+void meetAlbert(string text[], int i);
 void right(string text[], int i);
 
 int main() {
@@ -118,6 +120,19 @@ void fork() {
 
     if (openfork.is_open()) {
         while (getline(openfork, line)) {
+            cout << line << endl;
+        }
+    }
+    cout << endl << endl;
+}
+
+void albert() {
+    string line = "";
+    ifstream openAlbert;
+    openAlbert.open("bee.txt");
+
+    if (openAlbert.is_open()) {
+        while (getline(openAlbert, line)) {
             cout << line << endl;
         }
     }
@@ -225,39 +240,89 @@ void stay(string text[], int i) {
 
 void follow(string text[], int i) {
     int answer;
-    for (i = 14; i < AD_TEXT; i++) {
-        if (i == 19) {
-            system("cls");
-            fork();
-            textbox_startAdventure(text, 19);
-            cout << endl << "select an option: ";
-            cin >> answer;
-            if (answer == 1) {
-                Sleep(1000);
-                system("cls");
-                left(text, i);
-            }
-            else if (answer == 2) {
-                Sleep(1000);
-                system("cls");
-                right(text, i);
-            }
-        }
+    for (i = 14; i < 20; i++) {
+
         trail2();
         textbox_startAdventure(text, i);
         Sleep(1000);
         system("cls");
     }
+    system("cls");
+    fork();
+    textbox_startAdventure(text, 19);
+    cout << endl << "select an option: ";
+    cin >> answer;
+    if (answer == 1) {
+        Sleep(1000);
+        system("cls");
+        left(text, i);
+    }
+    else if (answer == 2) {
+        Sleep(1000);
+        system("cls");
+     // right(text, i);
+    }
 }
 
 void left(string text[], int i) {
-    for (i = 20; i < AD_TEXT; i++) {
+    for (i = 20; i < 25; i++) {
         trail();
+        textbox_startAdventure(text, i);
+        Sleep(1000);
+        system("cls");
+        if (i == 24) {
+            meetAlbert(text, i);
+        }
+    }
+}
+
+void meetAlbert(string text[], int i) {
+    char follow;
+    for (i = 25; i < AD_TEXT; i++) {
+        albert();
+        textbox_startAdventure(text, i);
+        if (i == 33) {
+            cout << "would you like to follow the bee (y/n)? ";
+            cin >> follow;
+            if (follow == 'y' || follow == 'Y') {
+                //party
+            }
+            else if (follow == 'n' || follow == 'N') {
+                int c = 0;
+                i = 34;
+                while (c < 2) {
+                    trail2();
+                    textbox_startAdventure(text, i);
+                    Sleep(1000);
+                    system("cls");
+                    c++;
+                    i++;
+                }
+                right(text, i);
+                break;
+            }
+            else {
+                cout << endl << "invaild option. please select 'y' or 'n'";
+            }
+
+            Sleep(1000);
+            system("cls");
+            albert();
+            textbox_startAdventure(text, 33);
+        }
+        Sleep(1000);
+        system("cls");
     }
 }
 
 void right(string text[], int i) {
-    for (i = 20; i < AD_TEXT; i++) {
+    cout << "it works";
+    /*for (i = 36; i < AD_TEXT; i++) {
         trail();
+        textbox_startAdventure(text, i);
+        Sleep(1000);
+        system("cls");
     }
+    */
 }
+
