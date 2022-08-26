@@ -17,6 +17,7 @@ void trail();
 void trail2();
 void fork();
 void albert();
+void doggie();
 void get_text(string text[]);
 void textbox_meet(string text[], int i, string name);
 void meetPanda(string text[]);
@@ -133,6 +134,20 @@ void albert() {
 
     if (openAlbert.is_open()) {
         while (getline(openAlbert, line)) {
+            cout << line << endl;
+        }
+    }
+    cout << endl << endl;
+}
+
+
+void doggie() {
+    string line = "";
+    ifstream openDog;
+    openDog.open("dog.txt");
+
+    if (openDog.is_open()) {
+        while (getline(openDog, line)) {
             cout << line << endl;
         }
     }
@@ -260,7 +275,7 @@ void follow(string text[], int i) {
     else if (answer == 2) {
         Sleep(1000);
         system("cls");
-     // right(text, i);
+        right(text, i);
     }
 }
 
@@ -278,7 +293,7 @@ void left(string text[], int i) {
 
 void meetAlbert(string text[], int i) {
     char follow;
-    for (i = 25; i < AD_TEXT; i++) {
+    for (i = 25; i < 34; i++) {
         albert();
         textbox_startAdventure(text, i);
         if (i == 33) {
@@ -288,6 +303,7 @@ void meetAlbert(string text[], int i) {
                 //party
             }
             else if (follow == 'n' || follow == 'N') {
+                system("cls");
                 int c = 0;
                 i = 34;
                 while (c < 2) {
@@ -316,13 +332,12 @@ void meetAlbert(string text[], int i) {
 }
 
 void right(string text[], int i) {
-    cout << "it works";
-    /*for (i = 36; i < AD_TEXT; i++) {
+    system("cls");
+    for (i = 36; i < AD_TEXT; i++) {
         trail();
         textbox_startAdventure(text, i);
         Sleep(1000);
         system("cls");
     }
-    */
+   
 }
-
