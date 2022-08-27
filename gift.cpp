@@ -9,8 +9,7 @@
 #include <string>
 using namespace std;
 #define START_TEXT 7
-#define AD_TEXT 50
-#define MAX_TEXT 100
+#define MAX_TEXT 49
 
 void panda();
 void trail();
@@ -18,9 +17,10 @@ void trail2();
 void fork();
 void albert();
 void doggie();
+void present();
 void get_text(string text[]);
 void textbox_meet(string text[], int i, string name);
-void meetPanda(string text[]);
+string meetPanda(string text[]);
 void startAdventure(string text[]);
 void textbox_startAdventure(string text[], int i);
 void stay(string text[], int i);
@@ -29,14 +29,15 @@ void left(string text[], int i);
 void meetAlbert(string text[], int i);
 void right(string text[], int i);
 void meetSeymour(string text[], int i);
-void party();
+void party(string text[], string name);
 
 int main() {
     string text[MAX_TEXT];
-    meetPanda(text);
+    string name = meetPanda(text);
     startAdventure(text);
+    party(text, name);
 }
-void meetPanda(string text[]) {
+string meetPanda(string text[]) {
     
     string name;
     char present;
@@ -75,6 +76,7 @@ void meetPanda(string text[]) {
         }
         system("cls");
     }
+    return name;
 }
 
 void panda(){
@@ -150,6 +152,19 @@ void doggie() {
 
     if (openDog.is_open()) {
         while (getline(openDog, line)) {
+            cout << line << endl;
+        }
+    }
+    cout << endl << endl;
+}
+
+void present() {
+    string line = "";
+    ifstream openGift;
+    openGift.open("present.txt");
+
+    if (openGift.is_open()) {
+        while (getline(openGift, line)) {
             cout << line << endl;
         }
     }
@@ -300,7 +315,7 @@ void meetAlbert(string text[], int i) {
             cout << "would you like to follow the bee (y/n)? ";
             cin >> follow;
             if (follow == 'y' || follow == 'Y') {
-                party();
+                break;
             }
             else if (follow == 'n' || follow == 'N') {
                 system("cls");
@@ -344,15 +359,48 @@ void right(string text[], int i) {
 }
 
 void meetSeymour(string text[], int i) {
-    for (i = 40; i < 48; i++) {
+    for (i = 40; i < 44; i++) {
         doggie();
         textbox_startAdventure(text, i);
         Sleep(1000);
         system("cls");
     }
-    party();
 }
 
-void party() {
-    cout << "WE MADE IT!!!";
+void party(string text[], string name) {
+    char answer;
+    for (int i = 44; i < MAX_TEXT; i++) {
+        trail2();
+        textbox_startAdventure(text, i);
+        Sleep(1000);
+        system("cls");
+    }
+    present();
+    textbox_startAdventure(text, 5);
+    cout << "would you like to open the present (y/n)? ";
+    cin >> answer;
+    if (answer == 'N' || answer == 'n') {
+        system("cls");
+        present();
+        cout << "    ------------------------------------" << endl;
+        cout << "   |                                    |" << endl;
+        cout << "   |            oh. thats ok            |" << endl;
+        cout << "   |                                    |" << endl;
+        cout << "    ------------------------------------" << endl;
+        Sleep(1000);
+        system("cls");
+        present();
+        cout << "    ------------------------------------" << endl;
+        cout << "   |                                    |" << endl;
+        cout << "   |        maybe another time :(       |" << endl;
+        cout << "   |                                    |" << endl;
+        cout << "    ------------------------------------" << endl;
+        Sleep(1000);
+        exit(0);
+    }
+    else {
+        system("cls");
+        panda();
+        cout << "happy birthday " << name << "!!!" << endl;
+    }
 }
