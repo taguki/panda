@@ -28,6 +28,8 @@ void follow(string text[], int i);
 void left(string text[], int i);
 void meetAlbert(string text[], int i);
 void right(string text[], int i);
+void meetSeymour(string text[], int i);
+void party();
 
 int main() {
     string text[MAX_TEXT];
@@ -268,12 +270,10 @@ void follow(string text[], int i) {
     cout << endl << "select an option: ";
     cin >> answer;
     if (answer == 1) {
-        Sleep(1000);
         system("cls");
         left(text, i);
     }
     else if (answer == 2) {
-        Sleep(1000);
         system("cls");
         right(text, i);
     }
@@ -300,7 +300,7 @@ void meetAlbert(string text[], int i) {
             cout << "would you like to follow the bee (y/n)? ";
             cin >> follow;
             if (follow == 'y' || follow == 'Y') {
-                //party
+                party();
             }
             else if (follow == 'n' || follow == 'N') {
                 system("cls");
@@ -333,11 +333,26 @@ void meetAlbert(string text[], int i) {
 
 void right(string text[], int i) {
     system("cls");
-    for (i = 36; i < AD_TEXT; i++) {
+    for (i = 36; i < 40; i++) {
         trail();
         textbox_startAdventure(text, i);
         Sleep(1000);
         system("cls");
     }
+    meetSeymour(text, i);
    
+}
+
+void meetSeymour(string text[], int i) {
+    for (i = 40; i < 48; i++) {
+        doggie();
+        textbox_startAdventure(text, i);
+        Sleep(1000);
+        system("cls");
+    }
+    party();
+}
+
+void party() {
+    cout << "WE MADE IT!!!";
 }
